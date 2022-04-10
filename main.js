@@ -25,12 +25,35 @@ document.getElementById('Trashcan').style.display = 'none';
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 };
-//`You should make ${theDish}!`
+//`You should make: ${theDish}!`
 function weCook() {
   var randomDish = meals[getRandomIndex(meals)];
   var randomSide = sides[getRandomIndex(sides)];
-  var randomDessert = desserts[getRandomIndex(desserts)]
-   var radioButtons = document.querySelectorAll('input[type="radio"]');
+  var randomDessert = desserts[getRandomIndex(desserts)];
+  var radioButtons = Array.from(document.querySelectorAll('input[type="radio"]'));
+  var selectedElement = radioButtons.find(function (element) {
+    return element.checked;
+  });
+  var selectedValue;
+  if(!!selectedElement) {
+    selectedValue = selectedElement.value;
+  };
+  if (!!selectedValue) {
+    var dish = [];
+    if (selectedValue === 'side') {
+      dish.push(randomSide);
+    } else if (selectedValue === 'main') {
+      dish.push(randomDish);
+    } else if (selectedValue === 'dessert') {
+      dish.push(randomDessert);
+    } else if (selectedValue === 'entire') {
+      dish.push([randomSide, randomDish, randomDessert]);
+    }
+
+    if (dish.length > 0) {
+      handleDishFound(selectedValue, dish);
+    }
+  }
   if(!dishName.checked){
     meals.push(randomDish)
   }
@@ -40,8 +63,16 @@ function weCook() {
   if (!dessertName.checked) {
     desserts.push(randomDessert)
   }
-  if (!radioButtons.checked){
-    hide(hideCookIcon)
-  }
+}
 
+function handleDishFound(name, dishesToDisplay) {
+  hide(hideCookIcon);
+  var dishContainer = document.getElementsByClassName('box2')[0];
+  var htmlToDisplay = dishesToDisplay.map(function (dishName) {
+    return `<p1><b>${dishName}</b></p1><br/>`
+  }).toString();
+  dishContainer.innerHTML = `
+    <h2>You should make:</h2>
+    ${htmlToDisplay}
+  `
 }
