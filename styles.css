@@ -1,10 +1,47 @@
-/* font-family: 'Roboto', sans-serif;
+ body{
+ outline-color: teal;
+ background-color:#0fb9b1;
+ margin-top: 100px
+}
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+.Side{
+  position: absolute;
+  top: 15%;
+  left: 70;
+}
+.Main-Dish{
+  position: absolute;
+  top: 20%;
+  left: 70;
+}
+.Dessert{
+  position: absolute;
+  top:25%;
+  left:70;
+}
+.Entire-Meal{
+  position: absolute;
+  top: 30%;
+  left: 70;
+}
 
-COLORS
+.box {
+  position:fixed;
+  top: 20%;
+  left: 70;
+  background-color: rgba(225, 225, 225, .9);
+  width: 600px;
+  height: 400px;
+  border: 3px solid;
+}
+
+/* COLORS
 teal - #0fb9b1;
 frosted white - rgba(225, 225, 225, .9);
 grey - #95a5a6;
 red - #ee5253
-
-*/
-
+} */
